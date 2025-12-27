@@ -1,107 +1,102 @@
 # Spur AI Chat – Backend
 
-This repository contains the backend for an AI-powered customer support chat system, built as a technical assessment for **Spur**. 
-
-The system provides a robust API to handle persistent user conversations, integrated with high-performance LLMs via a modular service architecture.
-
----
-
-## 🚀 Features
-
-* **Persistent Conversations:** Session-based message storage using Prisma ORM.
-* **Modular LLM Layer:** Pluggable service design currently powered by **Groq (Llama 3.1)**.
-* **Production-Ready Patterns:** Clean layered architecture (Controllers, Services, Routes).
-* **Error Resilience:** Robust handling for LLM timeouts and API failures.
-* **Fast & Lightweight:** Powered by Express.js and SQLite for zero-config setup.
+This is the backend service for the Spur AI Chat Support application.  
+It handles message processing, session management, persistence, and AI-powered replies.
 
 ---
 
-## 🧱 Tech Stack
+##  Tech Stack
 
-* **Runtime:** Node.js
-* **Framework:** Express.js
-* **Database:** SQLite (via Prisma ORM)
-* **LLM Provider:** Groq (OpenAI-compatible SDK)
-* **Language:** JavaScript (ES Modules)
+- **Runtime:** Node.js
+- **Framework:** Express
+- **Database:** PostgreSQL
+- **ORM:** Prisma
+- **LLM Provider:** Groq (LLaMA model)
 
 ---
 
-## 📂 Project Structure
+##  Features
 
+- Session-based conversations
+- Persistent storage of conversations and messages
+- Clean controller → service → data layer separation
+- LLM replies with conversation context
+- Graceful error handling
 
+---
 
-```text
-backend/
-├── src/
-│   ├── controllers/      # Handles HTTP logic (req/res)
-│   ├── services/         # Business logic & AI API integration
-│   ├── routes/           # Endpoint definitions
-│   ├── db/               # Prisma Client singleton
-│   ├── app.js            # Express middleware & app config
-│   └── server.js         # Server entry point
-├── prisma/
-│   └── schema.prisma     # Database models & relationships
-├── .env.example          # Environment template
-├── package.json          # Script & dependency management
-└── README.md             # Documentation
+##  Project Structure
+
+src/
+├─ controllers/ # Request handling
+├─ services/ # LLM + business logic
+├─ routes/ # API routes
+├─ prisma/ # Prisma schema & migrations
+└─ server.js # App entry point
 
 ---
 
 ## ⚙️ Setup Instructions
-1. Install Dependencies
-Bash
 
-cd backend
+### 1️⃣ Install dependencies
+
+```bash
 npm install
-2. Environment Setup
-Create a .env file in the backend/ directory:
 
-Code snippet
+2️⃣ Environment variables
+Create a .env file in backend/:
+env
+Copy code
+DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DB_NAME
+GROQ_API_KEY=your_groq_api_key
 
-DATABASE_URL="file:./dev.db"
-GROQ_API_KEY=your_api_key_here
-3. Database Migration
-Initialize the SQLite database and sync your schema:
+3️⃣ Database setup
+npx prisma migrate dev
+(Optional)
+npx prisma studio
 
-Bash
-
-npx prisma migrate dev --name init
-4. Run Development Server
-Bash
+4️⃣ Run the server
 
 npm run dev
-The API will be live at: http://localhost:4000
 
-## 📡 API Documentation
-Check Health
-GET /health
+Server runs at:
+http://localhost:4000
 
-Returns 200 OK if the server and database are active.
-
-Send Message
+🔗 API Endpoints
 POST /chat/message
+Request
 
-Payload:
-
-JSON
-
+json
+Copy code
 {
-  "message": "What is your refund policy?"
+  "message": "What is your return policy?",
+  "sessionId": "optional-session-id"
 }
-Success Response:
+Response
 
-JSON
-
+json
+Copy code
 {
-  "reply": "Our refund policy allows returns within 30 days...",
-  "sessionId": "550e8400-e29b-41d4-a716-446655440000"
+  "reply": "AI-generated response",
+  "sessionId": "conversation-session-id"
 }
-🧠 Design Decisions
-Service Isolation: The LLM logic is decoupled from the controller. This allowed a quick switch from Google Gemini to Groq without touching the routing or database logic.
 
-Schema Design: The message schema includes role (user/assistant) and sessionId to support future multi-turn memory implementation.
+Data & Persistence
+Conversations are identified using a session ID
 
-SQLite for Evaluation: Chosen for its "zero-setup" nature, allowing evaluators to run the project instantly without configuring Docker or Postgres.
+All user and assistant messages are stored in the database
+
+Conversation history is used to maintain multi-turn context
+
+Sessions persist across page reloads via localStorage
+
+Notes & Trade-offs
+
+Authentication is intentionally omitted (not required by assignment)
+
+Responses are generated synchronously (no streaming)
+
+Designed for clarity and extensibility over feature completeness
 
 👤 Author
-Archit Prakash Choudhary B.Tech Computer Science & Engineering
+Archit Prakash Choudhary
