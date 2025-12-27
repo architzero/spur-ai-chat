@@ -42,21 +42,22 @@ The frontend expects the backend API to be available at:
 
 http://localhost:4000
 Endpoint used:
-
 POST /chat/message
-🧠 UX Notes
-UI is intentionally minimal and support-focused
+```
+## UX Notes
 
-Designed to feel like a real customer support widget
+-UI is intentionally minimal and support-focused
 
-Avoids heavy animations or unnecessary complexity
+-Designed to feel like a real customer support widget
 
-📝 Future Improvements
-Streaming responses
+-Avoids heavy animations or unnecessary complexity
 
-Deployment environment switching
+## Future Improvements
+-Streaming responses
+
+-Deployment environment switching
 
 Optional dark mode
 
-👤 Author
+## Author
 Archit Prakash Choudhary

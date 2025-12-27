@@ -27,6 +27,7 @@ It handles message processing, session management, persistence, and AI-powered r
 
 ##  Project Structure
 
+```bash
 src/
 ├─ controllers/ # Request handling
 ├─ services/ # LLM + business logic
@@ -34,6 +35,7 @@ src/
 ├─ prisma/ # Prisma schema & migrations
 └─ server.js # App entry point
 
+```
 ---
 
 ## ⚙️ Setup Instructions
@@ -46,7 +48,6 @@ npm install
 2️⃣ Environment variables
 Create a .env file in backend/:
 env
-Copy code
 DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DB_NAME
 GROQ_API_KEY=your_groq_api_key
 
@@ -56,7 +57,6 @@ npx prisma migrate dev
 npx prisma studio
 
 4️⃣ Run the server
-
 npm run dev
 
 Server runs at:
@@ -64,39 +64,37 @@ http://localhost:4000
 
 🔗 API Endpoints
 POST /chat/message
-Request
+Request:
 
-json
-Copy code
 {
   "message": "What is your return policy?",
   "sessionId": "optional-session-id"
 }
-Response
 
-json
-Copy code
+Response:
+
 {
   "reply": "AI-generated response",
   "sessionId": "conversation-session-id"
 }
+```
 
-Data & Persistence
-Conversations are identified using a session ID
+## Data & Persistence
+-Conversations are identified using a session ID
 
-All user and assistant messages are stored in the database
+-All user and assistant messages are stored in the database
 
-Conversation history is used to maintain multi-turn context
+-Conversation history is used to maintain multi-turn context
 
-Sessions persist across page reloads via localStorage
+-Sessions persist across page reloads via localStorage
 
-Notes & Trade-offs
+-Notes & Trade-offs
 
-Authentication is intentionally omitted (not required by assignment)
+-Authentication is intentionally omitted (not required by assignment)
 
-Responses are generated synchronously (no streaming)
+-Responses are generated synchronously (no streaming)
 
-Designed for clarity and extensibility over feature completeness
+-Designed for clarity and extensibility over feature completeness
 
-👤 Author
+## Author
 Archit Prakash Choudhary
