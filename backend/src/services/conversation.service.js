@@ -7,12 +7,12 @@ export async function getOrCreateConversation(sessionId) {
   }
 
   let conversation = await prisma.conversation.findUnique({
-    where: { sessionId }
+      where: { id: sessionId }
   });
 
   if (!conversation) {
     conversation = await prisma.conversation.create({
-      data: { sessionId }
+	data: { id: sessionId }
     });
   }
 
