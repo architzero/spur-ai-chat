@@ -28,7 +28,7 @@
     bottomRef?.scrollIntoView({ behavior: "smooth" });
 
     try {
-      const res = await fetch("http://localhost:4000/chat/message", {
+      const res = await fetch("https://spur-ai-chat-1.onrender.com/chat/message", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: text, sessionId })
