@@ -7,7 +7,7 @@ https://spur-ai-chat-frontend.onrender.com/
 
 ---
 
-## 🚀 Features
+##  Features
 - AI-powered customer support chat
 - Session-based conversation memory
 - Persistent message storage
@@ -17,7 +17,7 @@ https://spur-ai-chat-frontend.onrender.com/
 
 ---
 
-## 🧱 Tech Stack
+##  Tech Stack
 
 ### Frontend
 - SvelteKit
@@ -40,14 +40,14 @@ https://spur-ai-chat-frontend.onrender.com/
 Each folder contains its own README with setup instructions.
 
 ---
-## 📌 Notes
+##  Notes
 - The frontend and backend are deployed separately.
 - Session IDs are used to maintain conversation context.
 - The backend is designed with a clean service-based architecture for scalability.
 
 ---
 
-## 📜 License
+##  License
 This project was built for evaluation purposes as part of a technical assignment.
 
 
